@@ -67,7 +67,7 @@ function PDEmodel()
     subplot(2,2,3); plot(t_sol, B, 'g', 'LineWidth', 2); title('Progenitor Exhausted Cells (B)'); xlabel('Time (days)'); ylabel('Population');
     subplot(2,2,4); plot(t_sol, P, 'm', 'LineWidth', 2); title('IL-2 Cytokine (P)'); xlabel('Time (days)'); ylabel('Concentration');
 
-    % Space-time evolution of E(y,t) (Heatmap)
+    % Space-time evolution of E(t,y) (Heatmap)
     figure
     [Y_grid, T_grid] = meshgrid(y, t_sol);
     surf(T_grid, Y_grid, E, 'EdgeColor', 'none');
@@ -78,6 +78,7 @@ function PDEmodel()
     ylabel('Exhaustion Stage (y)');
     zlabel('Density E');
 
+    
     %% ODE
     function dxdt = ODE(~, x)
         Etot = hphy * (w* x(5:end)); %trapezoidal rule
@@ -85,7 +86,7 @@ function PDEmodel()
         
         N_num=lambda_K*x(1)*x(2)+x(1)*integral;
         N_den=x(1)+x(2)+Etot+1;
-        kill  = hphy * N_num / N_den;
+        kill=hphy * N_num / N_den;
         
         dN = alpha*x(1)*(1-(x(1)/Tc))-kill;
         dK = hphy*x(4)*x(2)-delta_K*x(2);
@@ -111,7 +112,7 @@ function PDEmodel()
         dg_dE = hphy * w;
         dkill_dE = hphy*(df_dE * N_den - N_num * dg_dE) / N_den^2;
         
-        DN = [alpha*(1 - 2*x(1)/Tc) - dkill_dN,-dkill_dK,0,0,-dkill_dE];  
+        DN=[alpha*(1-2*x(1)/Tc)-dkill_dN,-dkill_dK,0,0,-dkill_dE];  
         DK=[0,hphy*x(4)-delta_K,0,hphy*x(2),zeros(1,r)];
         DB=[2^m*sB,0,hphy*x(4)-rE-delta_B,hphy*x(3),zeros(1,r)];
         DP=[0,rho_K-hphy*x(4),rho_B-hphy*x(4),-hphy*(x(2)+x(3))-delta_P,zeros(1,r)];
