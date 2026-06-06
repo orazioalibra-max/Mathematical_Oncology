@@ -9,7 +9,7 @@ close all
 %% Initial data
 
 % N=x(1) Tumor Volume                                    mm^3
-% K=x(2) Residual Healthy CTL Population (CD8+)          const
+% K=x(2) Residual Healthy CTL Population (CD8+)          per k per mm^3
 % B=x(3) Progenitor Exhausted T cells                    per k per mm^3
 % E=x(4) Terminally Exhausted T cells                    per k per mm^2
 % P=x(5) Interleukin-2 Cytokine Concentration            per k per mm^3
@@ -55,12 +55,12 @@ drawnow;
 %% Extension of the model - homogeneous assumptions
 
 % N=x(1) Tumor Volume                                    mm^3
-% K=x(2) Residual Healthy CTL Population (CD8+)          const
+% K=x(2) Residual Healthy CTL Population (CD8+)          per k per mm^3
 % B=x(3) Progenitor Exhausted T cells                    per k per mm^3
-% E_0=x(4) Initially Exhausted T cells                   per k per mm^2
+% E_0=x(4) Initially Exhausted T cells                   per k per mm^3
 % P=x(5) Interleukin-2 Cytokine Concentration            per k per mm^3
-% E_half=x(6) Middle-Exausted T cells                    per k per mm^2
-% E_1=x(7) Deeply-Exausted T cells                       per k per mm^2
+% E_half=x(6) Middle-Exausted T cells                    per k per mm^3
+% E_1=x(7) Deeply-Exausted T cells                       per k per mm^3
 
 
 lambda_y=[lambda_E,lambda_E,lambda_E];
@@ -100,12 +100,12 @@ drawnow;
 %% Extension of the model - heterogeneous assumptions
 
 % N=x(1) Tumor Volume                                    mm^3
-% K=x(2) Residual Healthy CTL Population (CD8+)          const
+% K=x(2) Residual Healthy CTL Population (CD8+)          per k per mm^3
 % B=x(3) Progenitor Exhausted T cells                    per k per mm^3
-% E_0=x(4) Initially Exhausted T cells                   per k per mm^2
+% E_0=x(4) Initially Exhausted T cells                   per k per mm^3
 % P=x(5) Interleukin-2 Cytokine Concentration            per k per mm^3
-% E_half=x(6) Middle-Exausted T cells                    per k per mm^2
-% E_1=x(7) Deeply-Exausted T cells                       per k per mm^2
+% E_half=x(6) Middle-Exausted T cells                    per k per mm^3
+% E_1=x(7) Deeply-Exausted T cells                       per k per mm^3
 
 
 lambda_y=[lambda_K,lambda_K+0.5*(lambda_E-lambda_K),lambda_E];

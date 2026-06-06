@@ -5,16 +5,16 @@ function PDEmodel()
     clear all
     close all
     % N=x(1) Tumor Volume                                    mm^3
-    % K=x(2) Residual Healthy CTL Population (CD8+)          const
+    % K=x(2) Residual Healthy CTL Population (CD8+)          per k per mm^3
     % B=x(3) Progenitor Exhausted T cells                    per k per mm^3
     % P=x(4) Interleukin-2 Cytokine Concentration            per k per mm^3
-    % E=x(5) Terminally Exhausted T cells                    per k per mm^2
+    % E=x(5) Terminally Exhausted T cells                    per k per mm^3
     
     alpha=0.3; % Tumor growth rate                           per day
     Tc=4472.5; % Tumor carrying capacity                     mm^3
     lambda_K=0.111; % Tumor-CTL lysis parameter              mm^3 per k per day
     lambda_E=0.0888; % Tumor-Terminally Exhausted lys. param mm^3 per k per day
-    hphy=10; % Magnifier for physical interactions              const
+    hphy=10; % Magnifier for physical interactions           const
     delta_K=0.4; % Death rate of CTLs                        per k per day
     delta_B=0.41; % Death rate of Progenitor Exhausted cells per k per day   
     delta_E=0.72; % Death rate of Terminally Exhausted cells per k per day
