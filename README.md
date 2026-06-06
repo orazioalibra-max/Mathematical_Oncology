@@ -1,1 +1,1 @@
-Work in progress
+MATLAB implementation of a mathematical model simulating tumor-immune dynamics and T cell exhaustion. Extension from standard ODEs to a continuous PDE, exploring different setups to study immune system behaviours that lead to chronic tumor stalemates.
